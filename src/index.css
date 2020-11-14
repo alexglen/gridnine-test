@@ -1,13 +1,187 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  display: flex;
+  width: 86%;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1420px;
+}
+
+.aside {
+  flex: 0 0 33%;
+}
+
+.main-part {
+  flex: 0 0 70%;
+}
+
+.list-flights {
+  margin: 0 auto;
+}
+
+.flight-info {
+  margin-top: 25px;
+  margin-bottom: 45px;
+  border: 1px solid rgb(219, 211, 211);
+  padding: 5px;
+}
+
+.main:not(:last-child) {
+  border-bottom: 3px solid rgba(18, 63, 146, 0.829);
+}
+
+.flight-info header {
+  height: 60px;
+  background-color: rgba(18, 63, 146, 0.829);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+}
+
+.flight-info header div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.flight-info .price {
+  font-size: 1.5rem;
+}
+
+.destination {
+  font-size: 1.125rem;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: 500;
+  border-bottom: 1px solid rgb(219, 211, 211);
+}
+
+.destination span:nth-child(2n) {
+  color: rgba(18, 63, 146, 0.829);
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.125rem;
+  height: 60px;
+}
+
+.time-info .from,
+.time-info .to {
+  display: flex;
+  align-items: baseline;
+  color: rgba(18, 63, 146, 0.829);
+}
+
+.time-info .from span:first-child,
+.time-info .to span:last-child {
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: black;
+}
+
+.time-info .from span:last-child,
+.time-info .to span:first-child {
+  border-bottom: 1px solid rgb(219, 211, 211);
+}
+
+.time-info .from span:last-child {
+  padding-right: 100px;
+}
+
+.time-info .to span:first-child {
+  padding-left: 100px;
+}
+
+.flight-footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.flight-info .button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.button-loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avia-companies,
+.prices,
+.sorting h3,
+.filter-transfers h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.avia-companies h3,
+.prices h3 {
+  margin-bottom: 15px;
+}
+
+.avia-companies .sum {
+  font-weight: 600;
+}
+
+.prices > div > div {
+  margin: 10px;
+  margin-left: 0;
+}
+
+.price-input .MuiOutlinedInput-input {
+  padding: 8.5px 14px;
+}
+
+.price-input {
+  width: 80%;
+}
+
+.filter-button {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.airline-name,
+.transfer-name {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 1.125rem;
+  margin-top: 5px;
+}
+
+.transfer-name {
+  color: #f50057;
 }
