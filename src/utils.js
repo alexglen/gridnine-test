@@ -35,7 +35,7 @@ export const getData = (date) => {
   const month = months[new Date(date).getMonth()];
   const dayOfWeek = daysOfWeek[new Date(date).getDay()];
 
-  return `${number}${month} ${dayOfWeek}`;
+  return `${number} ${month} ${dayOfWeek}`;
 };
 
 export const convierNumberMinutesToHours = (number) => {
@@ -79,16 +79,26 @@ export const sortFlights = (arr, typeOfSorting) => {
   }
 };
 
-export const filterByNumberOfTransfers = (arr, number) => {
-  switch (number) {
-    case 'all':
-      return arr;
-    case '1':
-      return arr.filter((el) => el.flight.legs.segments.length > 1);
-    case '0':
-      return arr.filter((el) => el.flight.legs.segments.length === 1);
-    default:
-      return arr;
+export const filterByNumberOfTransfers = (
+  arr,
+  { withTransfer, withoutTransfer }
+) => {
+  if (withTransfer && withoutTransfer) {
+    return arr;
+  } else if (withTransfer) {
+    return arr.filter(
+      (el) =>
+        el.flight.legs[0].segments.length === 2 &&
+        el.flight.legs[1].segments.length === 2
+    );
+  } else if (withoutTransfer) {
+    return arr.filter(
+      (el) =>
+        el.flight.legs[0].segments.length === 1 &&
+        el.flight.legs[1].segments.length === 1
+    );
+  } else {
+    return [];
   }
 };
 
@@ -102,7 +112,6 @@ export const filterByPrice = (arr, { min, max }) =>
 export const removeDuplicates = (arr) => {
   const result = [];
 
-  // Перебираем каждый элемент в исходном массиве
   arr.forEach((current) => {
     if (result.find((e) => e.name === current.name)) {
       return;
@@ -111,4 +120,26 @@ export const removeDuplicates = (arr) => {
     result.push(current);
   });
   return result;
+};
+
+export const filterByAirline = (arr, airlines) => {
+  const activeAirlines = Object.entries(airlines).filter((el) => el[1]);
+  const newArr = [];
+  activeAirlines.forEach((e) =>
+    arr.filter((el) => el.flight.carrier.caption === e[0] && newArr.push(el))
+  );
+  return newArr;
+};
+
+export const names = {
+  'Air France': true,
+  KLM: true,
+  'Аэрофлот - российские авиалинии': true,
+  'TURK HAVA YOLLARI A.O.': true,
+  'Finnair Oyj': true,
+  'Air Baltic Corporation A/S': true,
+  'Alitalia Societa Aerea Italiana': true,
+  'Pegasus Hava Tasimaciligi A.S.': true,
+  'Brussels Airlines': true,
+  'LOT Polish Airlines': true,
 };

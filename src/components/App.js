@@ -8,6 +8,8 @@ import {
   filterByNumberOfTransfers,
   sortFlights,
   filterByPrice,
+  names,
+  filterByAirline,
 } from '../utils';
 import '../index.css';
 
@@ -15,19 +17,29 @@ const App = () => {
   const [flights, setFlights] = useState([]);
   const [limit, setLimit] = useState(5);
   const [typeOfSorting, setTypeOfSorting] = useState('');
-  const [numberOfTransfers, setNumberOfTransfers] = useState('all');
+
+  const [numberOfTransfers, setNumberOfTransfers] = useState({
+    withTransfer: true,
+    withoutTransfer: true,
+  });
+
   const [price, setPrice] = useState({
     max: 10000000,
     min: 0,
   });
 
-  console.log(typeOfSorting);
+  const [airLines, setAirLines] = useState(names);
 
   useEffect(() => {
     getFlightsInformation().then(({ result }) => setFlights(result.flights));
   }, []);
 
-  const flightsAfterSorting = sortFlights(flights, typeOfSorting);
+  const flightsAfterFilteredByAirlines = filterByAirline(flights, airLines);
+
+  const flightsAfterSorting = sortFlights(
+    flightsAfterFilteredByAirlines,
+    typeOfSorting
+  );
 
   const flightsAfterFilteredOfTransfers = filterByNumberOfTransfers(
     flightsAfterSorting,
@@ -56,6 +68,7 @@ const App = () => {
             name: flight.carrier.caption,
             price: flight.price.totalFeeAndTaxes.amount,
           }))}
+          setAirLines={setAirLines}
         />
       </div>
       <div className="main-part">

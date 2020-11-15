@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
+import AviacompaniesFilters from './AviacompaniesFilters';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { Button, Checkbox } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-import AviacompaniesFilters from './AviacompaniesFilters';
 import '../index.css';
 
 const Aside = ({
   typeOfSorting,
   setTypeOfSorting,
   setNumberOfTransfers,
-  numberOfTransfers,
+  setAirLines,
   setPrice,
   listOfCompanies,
 }) => {
@@ -58,7 +58,9 @@ const Aside = ({
             color="primary"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
             id="transfer"
-            onChange={({ target: { value } }) => setNumberOfTransfers(value)}
+            onChange={({ target: { checked } }) =>
+              setNumberOfTransfers((p) => ({ ...p, withTransfer: checked }))
+            }
             value="1"
             defaultChecked
           />
@@ -71,7 +73,9 @@ const Aside = ({
             id="without-transfer"
             value="0"
             defaultChecked
-            onChange={({ target: { value } }) => setNumberOfTransfers(value)}
+            onChange={({ target: { checked } }) =>
+              setNumberOfTransfers((p) => ({ ...p, withoutTransfer: checked }))
+            }
           />
           <label htmlFor="without-transfer">без пересадки</label>
         </div>
@@ -118,7 +122,10 @@ const Aside = ({
             </div>
           </div>
         </div>
-        <AviacompaniesFilters listOfCompanies={listOfCompanies} />
+        <AviacompaniesFilters
+          listOfCompanies={listOfCompanies}
+          setAirLines={setAirLines}
+        />
       </div>
     </div>
   );

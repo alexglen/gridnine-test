@@ -1,8 +1,8 @@
 import React from 'react';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { Button } from '@material-ui/core';
-import '../index.css';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { convierNumberMinutesToHours, getData, getTime } from '../utils';
+import '../index.css';
 
 const FlightInfo = ({ legs, price, carrier }) => {
   return (
@@ -35,7 +35,7 @@ const FlightInfo = ({ legs, price, carrier }) => {
                           <span>
                             {segment?.departureCity?.caption &&
                               segment.departureCity.caption}
-                            ,
+                            ,&nbsp;
                             {segment.departureAirport.caption &&
                               segment.departureAirport.caption}
                           </span>
@@ -48,7 +48,7 @@ const FlightInfo = ({ legs, price, carrier }) => {
                           <span>
                             {segment?.arrivalCity?.caption &&
                               segment.arrivalCity.caption}
-                            ,
+                            ,&nbsp;
                             {segment?.arrivalAirport?.caption &&
                               segment.arrivalAirport.caption}
                           </span>

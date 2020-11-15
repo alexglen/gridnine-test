@@ -185,3 +185,10 @@
 .transfer-name {
   color: #f50057;
 }
+
+.message-no-data {
+  color: #f50057;
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
